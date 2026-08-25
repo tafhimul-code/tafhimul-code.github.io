@@ -1,82 +1,12 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Auto Message — Dashboard</title>
-<link rel="stylesheet" href="style.css">
+    <title>My Website</title>
 </head>
 <body>
-<div class="app">
-  <aside>
-    <div class="logo">A<span>M</span></div>
-    <div class="brand">AUTO MESSAGE<small>Smart Messaging Panel</small></div>
-    <nav>
-      <a class="active" href="#">⌂ Dashboard</a>
-      <a href="#compose">✎ Compose</a>
-      <a href="#templates">▣ Templates</a>
-      <a href="#activity">◷ Activity</a>
-    </nav>
-    <div class="safe">● SAFE MODE<br><small>Consent-based sending</small></div>
-  </aside>
 
-  <main>
-    <header>
-      <div><p class="eyebrow">CONTROL CENTER</p><h1>Auto Message</h1></div>
-      <div class="status"><i></i> System ready</div>
-    </header>
+    <h1>Welcome to My Website</h1>
+    <p>This is my first website!</p>
 
-    <section class="hero">
-      <div>
-        <p class="eyebrow">SMART AUTOMATION</p>
-        <h2>Send the right<br><em>message, automatically.</em></h2>
-        <p class="muted">Create reusable messages, preview them and schedule permitted notifications without repetitive manual work.</p>
-        <a class="btn" href="#compose">Create message ↗</a>
-      </div>
-      <div class="visual"><div class="circle"><b>✉</b></div><span class="pulse p1"></span><span class="pulse p2"></span></div>
-    </section>
-
-    <section class="grid" id="compose">
-      <div class="panel compose">
-        <div class="panel-head"><h3>Compose message</h3><span>01</span></div>
-        <label>Recipient / group</label>
-        <input id="recipient" placeholder="e.g. Customer / Approved group">
-        <label>Message</label>
-        <textarea id="message" rows="7" placeholder="Write your custom message..."></textarea>
-        <div class="row">
-          <button class="btn" onclick="preview()">Preview</button>
-          <button class="ghost" onclick="clearForm()">Clear</button>
-        </div>
-      </div>
-
-      <div class="panel">
-        <div class="panel-head"><h3>Preview</h3><span>02</span></div>
-        <div id="preview" class="preview">Your message preview will appear here.</div>
-        <div class="schedule">
-          <label>Schedule</label>
-          <input id="schedule" type="datetime-local">
-          <button class="btn full" onclick="scheduleMsg()">Save schedule</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="templates" id="templates">
-      <div class="section-head"><div><p class="eyebrow">LIBRARY</p><h2>Message templates</h2></div></div>
-      <div class="template-grid">
-        <button onclick="useTemplate('Welcome','Hello! Welcome to our service. How can we help you today?')"><b>Welcome</b><span>Friendly first message</span></button>
-        <button onclick="useTemplate('Update','Hi! Here is your latest update. Please let us know if you need anything.')"><b>Update</b><span>Simple status notification</span></button>
-        <button onclick="useTemplate('Reminder','Friendly reminder: your scheduled activity is coming up soon.')"><b>Reminder</b><span>Helpful reminder</span></button>
-      </div>
-    </section>
-
-    <section class="activity" id="activity">
-      <div class="section-head"><div><p class="eyebrow">ACTIVITY</p><h2>Recent actions</h2></div></div>
-      <div id="log" class="log"><div><span class="green">●</span><b>System ready</b><small>Safe mode enabled</small></div></div>
-    </section>
-
-    <footer>Auto Message Dashboard <span>Built for responsible, consent-based automation.</span></footer>
-  </main>
-</div>
-<script src="script.js"></script>
 </body>
 </html>
