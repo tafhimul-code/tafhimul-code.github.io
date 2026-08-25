@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>অ্যাডমিন প্যানেল — Book Heaven</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+<header class="topbar">
+  <a class="brand" href="index.html"><img src="assets/logo.jpg" alt=""><span>Book Heaven <small>By Naznin</small></span></a>
+  <a class="back-link" href="index.html">← ওয়েবসাইটে ফিরুন</a>
+</header>
+
+<main class="admin-wrap">
+  <div class="admin-title">
+    <div><span class="eyebrow">ব্যবস্থাপনা</span><h1>অ্যাডমিন প্যানেল</h1><p>বইয়ের নাম, ছবি, দাম ও তথ্য পরিবর্তন করুন।</p></div>
+    <button id="resetBtn" class="ghost">ডেমো ডেটা রিসেট</button>
+  </div>
+
+  <div class="stats">
+    <div><b id="bookCount">0</b><span>মোট বই</span></div>
+    <div><b id="minPrice">৳০</b><span>সর্বনিম্ন দাম</span></div>
+    <div><b id="maxPrice">৳০</b><span>সর্বোচ্চ দাম</span></div>
+  </div>
+
+  <section class="panel">
+    <h2 id="formTitle">নতুন বই যোগ করুন</h2>
+    <form id="bookForm">
+      <input type="hidden" id="bookId">
+      <label>বইয়ের নাম<input id="name" required placeholder="যেমন: রিয়াদুস সালেহীন"></label>
+      <div class="two">
+        <label>দাম (টাকা)<input id="price" type="number" min="0" required placeholder="350"></label>
+        <label>লেখক<input id="author" placeholder="লেখকের নাম"></label>
+      </div>
+      <label>বইয়ের ছবির লিংক<input id="image" placeholder="https://... (ঐচ্ছিক)"></label>
+      <label>বিবরণ<textarea id="description" rows="3" placeholder="বই সম্পর্কে সংক্ষিপ্ত তথ্য"></textarea></label>
+      <div class="form-actions"><button class="btn" type="submit">সংরক্ষণ করুন</button><button id="cancelBtn" class="ghost" type="button">বাতিল</button></div>
+    </form>
+  </section>
+
+  <section class="panel">
+    <div class="list-head"><h2>বইয়ের তালিকা</h2><span id="saveNote">ব্রাউজারে সংরক্ষিত</span></div>
+    <div id="adminList"></div>
+  </section>
+</main>
+<footer>Book Heaven By Naznin — অ্যাডমিন প্যানেল</footer>
+<script src="admin.js"></script>
+</body>
+</html>
