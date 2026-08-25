@@ -1,93 +1,44 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --font-serif: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', sans-serif;
+    --font-bengali: 'Hind Siliguri', 'SF Pro Text', -apple-system, sans-serif;
+  }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", "Hind Siliguri", "Plus Jakarta Sans", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui, sans-serif;
-    background-color: #060913;
-    color: #f1f5f9;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    letter-spacing: -0.011em;
+    font-family: var(--font-sans);
   }
 }
 
-/* iOS English & Bengali Typography Utility */
-.font-ios {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Kohinoor Bangla", "Bangla Sangam MN", "Noto Sans Bengali", "Hind Siliguri", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", system-ui, sans-serif;
+.font-cinzel {
+  font-family: 'Cinzel', serif;
 }
 
-/* Royal Classic Text Gradients */
-.royal-text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #dbeafe 30%, #93c5fd 60%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.font-bengali {
+  font-family: 'Hind Siliguri', -apple-system, sans-serif;
 }
 
-.royal-text-sapphire {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Custom scrollbar for royal dark theme */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
 }
 
-.royal-text-platinum {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 40%, #cbd5e1 75%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-/* Royal Borders & Glows */
-.royal-border {
-  border-color: rgba(59, 130, 246, 0.25);
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 168, 128, 0.2);
+  border-radius: 9999px;
 }
 
-.royal-glow {
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.25), 0 0 6px rgba(37, 99, 235, 0.3);
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(197, 168, 128, 0.4);
 }
 
-.royal-glow-hover:hover {
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3), 0 0 10px rgba(37, 99, 235, 0.35);
-}
-
-/* Royal Shimmer Sweep Effect */
-@keyframes royalShine {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.shimmer-royal-sweep {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(96, 165, 250, 0.3) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  background-size: 200% 100%;
-  animation: royalShine 3.5s infinite;
-}
-
-/* Floating Ambient Aura */
-@keyframes floatAura {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.15;
-  }
-  50% {
-    transform: translateY(-20px) scale(1.08);
-    opacity: 0.25;
-  }
-}
-
-.animate-float-aura {
-  animation: floatAura 8s ease-in-out infinite;
-}
-
-/* Hide scrollbar for clean horizontal story bars & feeds */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -95,3 +46,38 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Glassmorphic luxury cards */
+.royal-glass {
+  background: rgba(18, 22, 32, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.royal-glass-gold {
+  background: linear-gradient(135deg, rgba(28, 24, 18, 0.8) 0%, rgba(18, 22, 32, 0.85) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.royal-glass-light {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* iOS-style glowing pulse for active/recording */
+@keyframes audio-pulse {
+  0%, 100% { height: 6px; opacity: 0.5; }
+  50% { height: 26px; opacity: 1; }
+}
+
+.animate-waveform-1 { animation: audio-pulse 0.8s ease-in-out infinite alternate 0.1s; }
+.animate-waveform-2 { animation: audio-pulse 0.7s ease-in-out infinite alternate 0.25s; }
+.animate-waveform-3 { animation: audio-pulse 0.9s ease-in-out infinite alternate 0.4s; }
+.animate-waveform-4 { animation: audio-pulse 0.6s ease-in-out infinite alternate 0.15s; }
+.animate-waveform-5 { animation: audio-pulse 0.85s ease-in-out infinite alternate 0.35s; }
+

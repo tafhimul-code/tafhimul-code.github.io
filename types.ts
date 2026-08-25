@@ -1,220 +1,165 @@
-export type AppLanguage = 'bn' | 'en';
+export type MediaType = 'image' | 'video';
 
-export interface LoggedInDevice {
+export interface ActiveDevice {
   id: string;
   deviceName: string;
-  platform: string;
+  deviceType: 'iPhone' | 'Android' | 'MacBook' | 'Windows' | 'iPad';
   location: string;
   ipAddress: string;
   lastActive: string;
   isCurrent: boolean;
 }
 
-export interface StoryHighlight {
-  id: string;
-  title: string;
-  cover: string;
-}
-
-export interface UserProfile {
-  id: string;
+export interface InstagramConnection {
   username: string;
   fullName: string;
-  emailOrPhone?: string;
+  profilePic: string;
+  connectedAt: string;
+  reelsCount: number;
+  followersCount: string;
+  verified: boolean;
+}
+
+export interface UserAccount {
+  id: string;
+  name: string;
+  username: string; // unique
+  emailOrPhone: string;
   password?: string;
   avatar: string;
-  banner?: string;
   bio: string;
-  location?: string;
   website?: string;
+  gender?: string;
+  category?: string;
+  isPrivate: boolean;
   isVerified: boolean;
+  postsCount: number;
+  videosCount: number;
   followersCount: number;
   followingCount: number;
-  postsCount: number;
-  reelsCount?: number;
-  isPrivateAccount?: boolean;
-  isFollowing?: boolean;
-  instagramHandle?: string;
-  isInstagramConnected: boolean;
-  instagramFollowers?: string;
-  onlineStatus?: 'online' | 'offline' | 'away';
-  lastSeen?: string;
-  highlights?: StoryHighlight[];
-  registeredDevices?: LoggedInDevice[];
-  joinDate?: string;
-  chatTheme?: string;
+  joinedDate: string;
+  activeDevices: ActiveDevice[];
+  instagramConnected: InstagramConnection | null;
+  blockedUserIds: string[];
+  savedPostIds: string[];
+  followingUserIds: string[];
+}
+
+export interface CommentItem {
+  id: string;
+  userId: string;
+  userName: string;
+  userUsername: string;
+  userAvatar: string;
+  isVerified?: boolean;
+  text: string;
+  timestamp: string;
+  likesCount: number;
+  isLiked?: boolean;
+  replies?: CommentItem[];
+}
+
+export interface PostItem {
+  id: string;
+  userId: string;
+  user: {
+    name: string;
+    username: string;
+    avatar: string;
+    isVerified: boolean;
+  };
+  mediaType: MediaType;
+  mediaUrls: string[];
+  caption: string;
+  location?: string;
+  likesCount: number;
+  isLiked: boolean;
+  comments: CommentItem[];
+  timestamp: string;
+  isSaved: boolean;
+  tags?: string[];
+  viewsCount?: number;
+}
+
+export interface ReelItem {
+  id: string;
+  title: string;
+  caption: string;
+  videoUrl: string;
+  posterUrl: string;
+  user: {
+    name: string;
+    username: string;
+    avatar: string;
+    isVerified: boolean;
+  };
+  likesCount: number;
+  commentsCount: number;
+  sharesCount: number;
+  isLiked: boolean;
+  isSaved?: boolean;
+  musicTitle: string;
+  musicAuthor?: string;
+  source: 'instagram' | 'ourwealth';
+  instagramAuthor?: string;
+  isInstagramExclusive?: boolean;
+  timestamp: string;
 }
 
 export interface StoryItem {
   id: string;
   userId: string;
   user: {
+    name: string;
     username: string;
     avatar: string;
     isVerified?: boolean;
   };
   mediaUrl: string;
-  mediaType: 'image' | 'video';
-  timestamp: string;
+  mediaType: MediaType;
   caption?: string;
-  hasSeen?: boolean;
-}
-
-export interface Comment {
-  id: string;
-  userId: string;
-  username: string;
-  userAvatar: string;
-  isVerified?: boolean;
-  text: string;
   timestamp: string;
-  likes: number;
-  isLiked?: boolean;
+  hasSeen: boolean;
 }
 
-export interface Post {
-  id: string;
-  userId: string;
-  author: {
-    username: string;
-    fullName: string;
-    avatar: string;
-    isVerified: boolean;
-    instagramHandle?: string;
-  };
-  mediaType: 'image' | 'video';
-  mediaUrls: string[];
-  caption: string;
-  tags: string[];
-  location?: string;
-  audioTrack?: string;
-  likesCount: number;
-  commentsCount: number;
-  sharesCount: number;
-  isLiked: boolean;
-  isSaved: boolean;
-  isInstagramCrossPosted?: boolean;
-  createdAt: string;
-  comments?: Comment[];
-}
-
-export interface Reel {
-  id: string;
-  userId: string;
-  author: {
-    username: string;
-    fullName: string;
-    avatar: string;
-    isVerified: boolean;
-    instagramHandle?: string;
-  };
-  videoUrl: string;
-  thumbnailUrl?: string;
-  caption: string;
-  tags: string[];
-  audioTitle: string;
-  audioArtist: string;
-  likesCount: number;
-  commentsCount: number;
-  sharesCount: number;
-  isLiked: boolean;
-  isSaved: boolean;
-  createdAt: string;
-  viewsCount: number;
-  comments?: Comment[];
-  isInstagramSync?: boolean;
-}
-
-export interface ChatTheme {
-  id: string;
-  name: string;
-  nameBn: string;
-  previewGradient: string;
-  bubbleMe: string;
-  bubblePartner: string;
-  borderTint: string;
-  bgTint: string;
-}
-
-export interface ChatMessage {
+export interface DirectMessage {
   id: string;
   senderId: string;
-  recipientId: string; // or conversationId
+  receiverId: string;
   text?: string;
   mediaUrl?: string;
-  mediaType?: 'image' | 'video' | 'voice' | 'reel_share' | 'post_share';
-  voiceDuration?: number; // in seconds
-  replyTo?: {
+  mediaType?: 'image' | 'video' | 'audio' | 'voice' | 'reel';
+  audioDuration?: string;
+  reelData?: {
     id: string;
-    senderName: string;
-    text?: string;
-    mediaType?: string;
-  };
-  sharedReel?: {
-    id: string;
-    thumbnailUrl: string;
-    caption: string;
-    authorUsername: string;
-    videoUrl?: string;
-    isInstagramSync?: boolean;
-    audioTitle?: string;
-  };
-  sharedPost?: {
-    id: string;
-    mediaUrl: string;
-    caption: string;
-    authorUsername: string;
+    title: string;
+    videoUrl: string;
+    posterUrl: string;
+    source: 'instagram' | 'ourwealth';
+    author: string;
+    isInstagramExclusive?: boolean;
   };
   timestamp: string;
-  status: 'sent' | 'delivered' | 'read';
-  seenAt?: string;
-  reactions?: { [emoji: string]: string[] }; // emoji -> userIds
-  isVanish?: boolean;
+  status: 'sent' | 'delivered' | 'seen';
+  reaction?: string;
 }
 
-export interface Conversation {
+export type ChatTheme = 'emerald' | 'royal-dark' | 'champagne' | 'midnight' | 'amethyst' | 'graphite';
+
+export interface ChatConversation {
   id: string;
-  isGroup: boolean;
-  name?: string;
+  type: 'direct' | 'community';
+  participantIds: string[];
+  otherUser?: UserAccount;
+  groupName?: string;
   groupAvatar?: string;
-  participants: UserProfile[];
-  lastMessage?: ChatMessage;
+  groupDescription?: string;
+  memberCount?: number;
+  lastMessage?: DirectMessage;
   unreadCount: number;
-  isInstagramThread?: boolean;
-  isMessageRequest?: boolean;
-  isBlocked?: boolean;
-  isVanishMode?: boolean;
-  chatTheme?: string;
-  updatedAt: string;
+  isTyping?: boolean;
+  theme: ChatTheme;
+  createdAt: string;
 }
 
-export interface HangoutRoom {
-  id: string;
-  title: string;
-  topic: string;
-  host: UserProfile;
-  participantsCount: number;
-  activeSpeakers: UserProfile[];
-  listeners: UserProfile[];
-  isLive: boolean;
-  roomType: 'vip_lounge' | 'supercar_club' | 'investor_hub' | 'adda_chill';
-}
-
-export interface NotificationItem {
-  id: string;
-  type: 'like' | 'comment' | 'follow' | 'mention';
-  fromUser: {
-    id: string;
-    username: string;
-    fullName: string;
-    avatar: string;
-    isVerified?: boolean;
-  };
-  text: string;
-  timestamp: string;
-  postThumbnail?: string;
-  isRead?: boolean;
-}
-
-export type TabType = 'feed' | 'explore' | 'reels' | 'messages' | 'hangout' | 'profile';
-
+export type ActiveTab = 'feed' | 'reels' | 'messages' | 'explore' | 'profile' | 'community';
